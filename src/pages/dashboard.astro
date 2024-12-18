@@ -1,0 +1,20 @@
+---
+import Layout from '../components/Layout.astro'
+---
+
+<Layout title="Astro 5 + Clerk">
+  <div class="flex flex-col items-center gap-4 min-h-screen">
+    <h1 class="text-2xl font-bold text-white">
+      Dashboard
+    </h1>
+    <p>
+      Protected route. Only logged in users can see this page.
+    </p>
+    <a 
+    href="/" 
+    class="text-blue-400 hover:text-blue-300 underline underline-offset-2 transition-colors"
+  >
+    Go to home
+  </a>
+  </div>
+</Layout> 

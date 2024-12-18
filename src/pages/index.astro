@@ -1,0 +1,48 @@
+---
+import Layout from '../components/Layout.astro'
+
+const user = await Astro.locals.currentUser()
+---
+
+<Layout title="Astro 5 + Clerk Demo">
+  <div class="flex flex-col items-center gap-4 min-h-screen">
+    {!user ? (
+      <div class="flex flex-col items-center gap-6 text-center">
+        <h1 class="text-2xl font-bold text-white">Sign in to try it out</h1>
+        <a 
+          href="/dashboard" 
+          class="text-blue-400 hover:text-blue-300 underline underline-offset-2 transition-colors"
+        >
+          Go to dashboard (requires login)
+        </a>
+        <div class="flex items-center gap-4 mt-2">
+          <img 
+            src="https://astro.build/assets/press/astro-logo-light.svg" 
+            alt="Astro Logo" 
+            class="h-8"
+          />
+          <span class="text-white text-xl">+</span>
+          <img 
+            src="https://avatars.githubusercontent.com/u/49538330?s=280&v=4" 
+            alt="Clerk Logo" 
+            class="h-12 w-12 rounded-full"
+          />
+        </div>
+      </div>
+    ) : (
+      <>
+        <h1 class="text-white text-2xl font-bold">Welcome, {user?.firstName}!</h1>
+        <a 
+          href="/dashboard" 
+          class="text-blue-400 hover:text-blue-300 underline underline-offset-2 transition-colors"
+        >
+          Go to dashboard
+        </a>
+        <pre class="bg-gray-900 text-white p-6 rounded-lg overflow-auto w-full max-w-2xl border border-gray-700 text-xs font-mono">
+          <code>{JSON.stringify(user, null, 2).trim()}</code>
+        </pre>
+      </>
+    )}
+
+  </div>
+</Layout>
